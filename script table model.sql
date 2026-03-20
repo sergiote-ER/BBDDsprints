@@ -1,39 +1,43 @@
-CREATE TABLE programadores (
-    id_programador SERIAL PRIMARY KEY,
-    nombre         VARCHAR(100)  NOT NULL,
-    apellidos      VARCHAR(150)  NOT NULL,
-    email          VARCHAR(150)  UNIQUE NOT NULL,
-    especialidad   VARCHAR(100),
-    fecha_alta     DATE          NOT NULL
-);
- 
-CREATE TABLE proyectos (
-    id_proyecto  SERIAL PRIMARY KEY,
-    nombre       VARCHAR(150) NOT NULL,
-    descripcion  TEXT,
-    fecha_inicio DATE         NOT NULL,
-    fecha_fin    DATE
-);
- 
-CREATE TABLE sprints (
-    id_sprint    SERIAL PRIMARY KEY,
-    nombre       VARCHAR(100) NOT NULL,
-    fecha_inicio DATE         NOT NULL,
-    fecha_fin    DATE         NOT NULL,
-    estado       VARCHAR(50)  NOT NULL,
-    id_proyecto  INT          NOT NULL,
-    FOREIGN KEY (id_proyecto) REFERENCES proyectos(id_proyecto)
-);
- 
-CREATE TABLE tareas (
-    id_tarea        SERIAL PRIMARY KEY,
-    titulo          VARCHAR(200) NOT NULL,
-    descripcion     TEXT,
-    estado          VARCHAR(50)  NOT NULL,
-    prioridad       VARCHAR(20)  NOT NULL,
-    horas_estimadas DECIMAL(5,2),
-    id_programador  INT          NOT NULL,
-    id_sprint       INT          NOT NULL,
-    FOREIGN KEY (id_programador) REFERENCES programadores(id_programador),
-    FOREIGN KEY (id_sprint)      REFERENCES sprints(id_sprint)
-);
+CREATE TABLE
+    programadores (
+        id_programador SERIAL PRIMARY KEY,
+        nombre VARCHAR(100) NOT NULL,
+        apellidos VARCHAR(150) NOT NULL,
+        email VARCHAR(150) UNIQUE NOT NULL,
+        especialidad VARCHAR(100),
+        fecha_alta DATE NOT NULL
+    );
+
+CREATE TABLE
+    proyectos (
+        id_proyecto SERIAL PRIMARY KEY,
+        nombre VARCHAR(150) NOT NULL,
+        descripcion TEXT,
+        fecha_inicio DATE NOT NULL,
+        fecha_fin DATE
+    );
+
+CREATE TABLE
+    sprints (
+        id_sprint SERIAL PRIMARY KEY,
+        nombre VARCHAR(100) NOT NULL,
+        fecha_inicio DATE NOT NULL,
+        fecha_fin DATE NOT NULL,
+        estado VARCHAR(50) NOT NULL,
+        id_proyecto INT NOT NULL,
+        FOREIGN KEY (id_proyecto) REFERENCES proyectos (id_proyecto)
+    );
+
+CREATE TABLE
+    tareas (
+        id_tarea SERIAL PRIMARY KEY,
+        titulo VARCHAR(200) NOT NULL,
+        descripcion TEXT,
+        estado VARCHAR(50) NOT NULL,
+        prioridad VARCHAR(20) NOT NULL,
+        horas_estimadas DECIMAL(5, 2),
+        id_programador INT NOT NULL,
+        id_sprint INT NOT NULL,
+        FOREIGN KEY (id_programador) REFERENCES programadores (id_programador),
+        FOREIGN KEY (id_sprint) REFERENCES sprints (id_sprint)
+    );
