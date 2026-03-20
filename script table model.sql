@@ -5,7 +5,7 @@ CREATE TABLE
         apellidos VARCHAR(150) NOT NULL,
         email VARCHAR(150) UNIQUE NOT NULL,
         especialidad VARCHAR(100),
-        fecha_alta DATE NOT NULL
+        fecha_altaa DATE NOT NULL
     );
 
 CREATE TABLE
